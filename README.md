@@ -6,5 +6,5 @@ performed in the IPython project with the
 
 The reports were written in the form of IPython notebooks, which can be viewed
 in rendered form
-[via nbviewer](http://nbviewer.ipython.org/urls/github.com/ipython/sloan-2013-reports).
+[via nbviewer](http://nbviewer.ipython.org/github/ipython/sloan-2013-reports).
 
