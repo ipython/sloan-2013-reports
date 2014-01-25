@@ -12,20 +12,30 @@ PDF=IPython\ 2013\ Progress\ Report\ -\ Sloan\ Foundation.pdf
 #############################################################################
 # You shouldn't need to configure anything below.
 
-all: $(PDF)
+# This should work with the pattern rules at the end, but it isn't, don't know
+# why. I hate debugging makefile rule problems, so here it's just brue-forced.
+$(PDF): $(PDF:pdf=ipynb)
+	ipython nbconvert --to latex "$<"
+	./replace.py "$(<:ipynb=tex)"
+	pdflatex "$(<:ipynb=tex)"
+	pdflatex "$(<:ipynb=tex)"
 
 clean:
-	rm -f $(PDF) $(PDF:pdf=tex) $(PDF:pdf=aux ) $(PDF:pdf=log) \
-		$(PDF:pdf=out) *~ 
+	rm -f $(PDF:pdf=tex) $(PDF:pdf=aux) $(PDF:pdf=log) $(PDF:pdf=out) *~
 
-# Pattern rules
+cleanall: clean
+	rm -f $(PDF)
 
-# Make cleaned up tex file from ipynb sources
-%.tex : %.ipynb
-	ipython nbconvert --to latex "$<"
-	./replace.py "$<"
+
+# Pattern rules. FIXME: for some reason these aren't working. No time to debug.
 
 # Make pdf out of tex source, run pdflatex twice.
-%.pdf : %.tex
+.tex.pdf:
 	pdflatex "$<"
 	pdflatex "$<"
+
+# Make cleaned up tex file from ipynb sources
+.ipynb.tex:
+	ipython nbconvert --to latex "$<"
+	./replace.py "$@"
+
