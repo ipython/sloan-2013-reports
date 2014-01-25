@@ -14,7 +14,7 @@ Usage::
 #-----------------------------------------------------------------------------
 
 patterns = [(r'\\documentclass{article}',
-             r'\\documentclass{article}\n  \\usepackage{palatino}'),
+             r'\\documentclass[11pt]{article}\n  \\usepackage{palatino}'),
              (r'^\s+IPython 2013 Progress Report - Sloan Foundation', ''),
              (r'1.15 million', r'\$1.15 million'),
             ]
