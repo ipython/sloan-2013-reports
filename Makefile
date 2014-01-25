@@ -13,7 +13,7 @@ PDF=IPython\ 2013\ Progress\ Report\ -\ Sloan\ Foundation.pdf
 # You shouldn't need to configure anything below.
 
 # This should work with the pattern rules at the end, but it isn't, don't know
-# why. I hate debugging makefile rule problems, so here it's just brue-forced.
+# why. I hate debugging makefile rule problems, so here it's just brue-forced.Fix
 $(PDF): $(PDF:pdf=ipynb)
 	ipython nbconvert --to latex "$<"
 	./replace.py "$(<:ipynb=tex)"
