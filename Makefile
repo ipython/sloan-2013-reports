@@ -21,7 +21,7 @@ $(PDF): $(PDF:pdf=ipynb)
 	pdflatex "$(<:ipynb=tex)"
 
 upload:
-	scp $(PDF) ipython.org:archive/sloan-2013-reports/
+	scp $(PDF) ipython:archive/sloan-2013-reports/
 
 clean:
 	rm -f $(PDF:pdf=tex) $(PDF:pdf=aux) $(PDF:pdf=log) $(PDF:pdf=out) *~
